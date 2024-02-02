@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Slot, useRouter, useSegments } from "expo-router";
 import { onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_AUTH } from "../FirebaseConfig"; // Ensure this path is correct
-
+import initDB from "../database";
 const InitialLayout = () => {
   const [user, setUser] = useState(null);
   const segments = useSegments();
   const router = useRouter();
 
   useEffect(() => {
+    initDB();
     const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, (currentUser) => {
       console.log("User changed: ", currentUser);
       setUser(currentUser);
