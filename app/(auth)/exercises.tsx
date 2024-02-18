@@ -1,7 +1,10 @@
-import { View, Text } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { storeToken } from "../../authTokenStorage"; // Adjust the import path as needed
+import ExerciseList from "../../components/ExerciseList";
+import SearchHeader from "../../components/SearchHeader";
+import { COLORS, SIZES } from "../../constants";
 
 const exercises = () => {
   const [message, setMessage] = useState("");
@@ -38,11 +41,16 @@ const exercises = () => {
       }
     });
   }, []);
+
   return (
-    <View>
-      <Text>exercises</Text>
-      <Text>{message}</Text>
-    </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{ flex: 1, padding: SIZES.medium }}>
+          <SearchHeader />
+          <ExerciseList />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

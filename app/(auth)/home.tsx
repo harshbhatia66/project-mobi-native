@@ -14,7 +14,7 @@ const Home = () => {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View>
       <Text>Home</Text>
       <Button title="Logout" onPress={handleLogout} />
     </View>
